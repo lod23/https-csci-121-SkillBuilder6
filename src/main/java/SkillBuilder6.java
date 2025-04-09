@@ -17,7 +17,19 @@ public class SkillBuilder6
      */
     public static double[] prefixAverage(double[] data)
     {
-        //TODO: replace this line with your code.
+        if (data == null || data.length == 0) {
+            return new double[0];
+        }
+
+        double[] prefixAverages = new double[data.length];
+        double sum = 0;
+
+        for (int i = 0; i < data.length; i++) {
+            sum += data[i];
+            prefixAverages[i] = sum / (i + 1);
+        }
+
+        return prefixAverages;
     }
 
     /**
@@ -30,7 +42,17 @@ public class SkillBuilder6
      */
     public static int  indexOf(int searchValue, int[] anArray)
     {
-        //TODO: replace this line with your code.
+        if (anArray == null) {
+            return -1;
+        }
+
+        for (int i = 0; i < anArray.length; i++) {
+            if (anArray[i] == searchValue) {
+                return i;
+            }
+        }
+
+        return -1;
     }
 
     /**
@@ -43,7 +65,17 @@ public class SkillBuilder6
      */
     public static int  indexOf(String s, String[] anArray)
     {
-        //TODO: replace this line with your code.
+        if (anArray == null || s == null) {
+            return -1;
+        }
+
+        for (int i = 0; i < anArray.length; i++) {
+            if (s.equals(anArray[i])) {
+                return i;
+            }
+        }
+
+        return -1;
     }
 
     /**
@@ -55,7 +87,35 @@ public class SkillBuilder6
      */
     public static String[] remove(String s, String[] anArray)
     {
-        //TODO: replace this line with your code.
+        if (anArray == null) {
+            return new String[0];
+        }
+
+        // First count how many elements we need to keep
+        int count = 0;
+        for (String item : anArray) {
+            if (item == null) {
+                if (s == null) continue;
+            } else if (item.equals(s)) {
+                continue;
+            }
+            count++;
+        }
+        // Create new array with the correct size
+        String[] result = new String[count];
+        int index = 0;
+
+        // Fill the new array
+        for (String item : anArray) {
+            if (item == null) {
+                if (s == null) continue;
+            } else if (item.equals(s)) {
+                continue;
+            }
+            result[index++] = item;
+        }
+
+        return result;
     }
 
     /**
@@ -64,6 +124,22 @@ public class SkillBuilder6
      */
     public static void reverse(int[] anArray)
     {
-        //TODO: replace this line with your code.
+        if (anArray == null || anArray.length <= 1) {
+            return;
+        }
+
+        int left = 0;
+        int right = anArray.length - 1;
+
+        while (left < right) {
+            // Swap elements
+            int temp = anArray[left];
+            anArray[left] = anArray[right];
+            anArray[right] = temp;
+
+            // Move pointers
+            left++;
+            right--;
+        }
     }
 }
